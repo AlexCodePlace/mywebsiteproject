@@ -1,8 +1,10 @@
 package com.mywebsiteproject.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class BasicController {
 
@@ -10,5 +12,4 @@ public class BasicController {
     public String sayHello(){
         return "Hello Everyone!";
     }
-
 }

@@ -10,5 +10,4 @@ public class BasicController {
     public String sayHello(){
         return "Hello Everyone!";
     }
-
 }

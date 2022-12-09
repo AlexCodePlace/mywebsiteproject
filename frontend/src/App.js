@@ -1,37 +1,69 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import './App.css'
+
+import axios from 'axios'
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            responseData:'',
+            date: '',
+            no2: '',
+            pm10: '',
+            pm2_5: '',
+            city: '',
+            state: '',
+            country: '',
+        };
 
-  state = {};
+        this.handleClick = this.handleClick.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
 
-  componentDidMount() {
-    this.hello()
-  }
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
-  hello = () => {
-    fetch('/hello')
-        .then(response => response.text())
-        .then(message => {
-          this.setState({message: message});
+        this.setState({
+            [name]: value
         });
-  };
+    }
 
-  render() {
-    return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-              <h2>React is here!</h2>
-            <h3 className="App-title">{this.state.message}</h3>
-          </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-        </div>
-    );
-  }
+    handleClick(event) {
+        axios.get('/pollution/current/city?' +
+            'city=' + this.state.city +
+            '&state='+ this.state.state +
+            '&country=' + this.state.country)
+            .then(response => this.setState({responseData: response.data}))
+            .catch((err) => console.error(err));
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleClick}>
+                <label>City:
+                    <input name="city" type="text" value={this.state.city} onChange={this.handleInputChange}/>
+                </label>
+                <br/>
+                <label>State:
+                    <input name="state" type="text" value={this.state.state} onChange={this.handleInputChange}/>
+                </label>
+                <br/>
+                <label>Country:
+                    <input name="country" type="text" value={this.state.country} onChange={this.handleInputChange} />
+                </label>
+                <br/>
+                <input type="submit" value="Submit"/>
+                <br/>
+                <p> Date: {this.state.responseData.date}</p>
+                <p> no2: {this.state.responseData.no2}</p>
+                <p> pm10: {this.state.responseData.pm10}</p>
+                <p> pm2_5: {this.state.responseData.pm2_5}</p>
+            </form>
+        );
+    }
 }
-
-export default App;
+export default App

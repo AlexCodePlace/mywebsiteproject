@@ -43,7 +43,7 @@ class App extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleClick}>
+            <form className="submitButton" onSubmit={this.handleClick}>
                 <label>City:
                     <input name="city" type="text" value={this.state.city} onChange={this.handleInputChange}/>
                 </label>

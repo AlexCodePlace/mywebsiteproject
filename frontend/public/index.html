@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
+    <link rel="stylesheet" href="%PUBLIC_URL%/indexhtml.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
     <meta
-      name="description"
-      content="Web site created using create-react-app"
+            name="description"
+            content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -24,20 +25,110 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <title>Climate App</title>
+</head>
+<body>
+<header>
+    Air Pollution Application
+</header>
+<div class="page-container">
+    <div id="content-wrap">
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <!--
+          This HTML file is a template.
+          If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+          You can add webfonts, meta tags, or analytics to this file.
+          The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+          To begin the development, run `npm start` or `yarn start`.
+          To create a production bundle, use `npm run build` or `yarn build`.
+        -->
+
+        <!--Test example of bundled react component-->
+        <!--<div id="like_button_container"></div>-->
+        <!--<script src="like_button.js"></script>-->
+
+        <div class="myDiv">
+            <p>Here you can check air pollution reference data:</p>
+        </div>
+
+        <table class="wikitable">
+            <tbody>
+            <tr>
+                <th>Qualitative name</th>
+                <th>Index or sub-index</th>
+                <th colspan="4">Pollutant (hourly) concentration
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2"></th>
+                <th>NO<sub>2</sub> μg/m<sup>3</sup></th>
+                <th>PM<sub>10</sub> μg/m<sup>3</sup></th>
+                <th>O<sub>3</sub> μg/m<sup>3</sup></th>
+                <th>PM<sub>2.5</sub> (optional) μg/m<sup>3</sup>
+                </th>
+            </tr>
+            <tr>
+                <td>Very low</td>
+                <td style="background:#b4eaa8;">0–25</td>
+                <td>0–50</td>
+                <td>0–25</td>
+                <td>0–60</td>
+                <td>0–15
+                </td>
+            </tr>
+            <tr>
+                <td>Low</td>
+                <td style="background:#9fd779;">25–50</td>
+                <td>50–100</td>
+                <td>25–50</td>
+                <td>60–120</td>
+                <td>15–30
+                </td>
+            </tr>
+            <tr>
+                <td>Medium</td>
+                <td style="background:#ead37f;">50–75</td>
+                <td>100–200</td>
+                <td>50–90</td>
+                <td>120–180</td>
+                <td>30–55
+                </td>
+            </tr>
+            <tr>
+                <td>High</td>
+                <td style="background:#e3af66;">75–100</td>
+                <td>200–400</td>
+                <td>90–180</td>
+                <td>180–240</td>
+                <td>55–110
+                </td>
+            </tr>
+            <tr>
+                <td>Very high</td>
+                <td style="background:#ee7777;">&gt;100</td>
+                <td>&gt;400</td>
+                <td>&gt;180</td>
+                <td>&gt;240</td>
+                <td>&gt;110
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <p>This webpage uses material from the Wikipedia article
+            <a href="https://en.wikipedia.org/wiki/Air_quality_index">"Air quality index"</a>
+            , which is released under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">
+                Creative Commons Attribution-Share-Alike License 3.0</a>.
+        </p>
+    </footer>
+</div>
+<!-- Load React. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+</body>
 </html>

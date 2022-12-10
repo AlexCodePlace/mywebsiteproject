@@ -9,8 +9,10 @@ class App extends Component {
         this.state = {
             responseData:'',
             date: '',
+            aqi:'',
             no2: '',
             pm10: '',
+            o3:'',
             pm2_5: '',
             city: '',
             state: '',
@@ -43,7 +45,7 @@ class App extends Component {
 
     render() {
         return (
-            <form className="submitButton" onSubmit={this.handleClick}>
+            <form className="submitButtonContainer" onSubmit={this.handleClick}>
                 <label>City:
                     <input name="city" type="text" value={this.state.city} onChange={this.handleInputChange}/>
                 </label>
@@ -56,12 +58,14 @@ class App extends Component {
                     <input name="country" type="text" value={this.state.country} onChange={this.handleInputChange} />
                 </label>
                 <br/>
-                <input type="submit" value="Submit"/>
+                <input className="submitButton" type="submit" value="Show me pollution data"/>
                 <br/>
                 <p> Date: {this.state.responseData.date}</p>
-                <p> no2: {this.state.responseData.no2}</p>
-                <p> pm10: {this.state.responseData.pm10}</p>
-                <p> pm2_5: {this.state.responseData.pm2_5}</p>
+                <p> Air Quality Index: {this.state.responseData.aqi}</p>
+                <p> NO<sub>2</sub>: {this.state.responseData.no2}</p>
+                <p> PM<sub>10</sub>: {this.state.responseData.pm10}</p>
+                <p> O<sub>3</sub>: {this.state.responseData.o3}</p>
+                <p> PM<sub>2.5</sub>: {this.state.responseData.pm2_5}</p>
             </form>
         );
     }

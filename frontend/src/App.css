@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  color: #49494b;
+  font-size: 16px;
+  line-height: 1.33337;
+  font-weight: 400;
 }
 
 .App-logo {
@@ -37,6 +41,17 @@
   }
 }
 .submitButton{
+  background-color: #3a8fd9; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 4px;
 }
 
 

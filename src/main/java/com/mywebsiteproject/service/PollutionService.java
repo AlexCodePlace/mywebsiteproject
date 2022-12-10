@@ -70,15 +70,20 @@ public class PollutionService {
                 JSONArray array = (JSONArray) dataObj.get("list");
                 for (Object o : array) {
                     JSONObject listObj = (JSONObject) o;
+
                     JSONObject component = (JSONObject) listObj.get("components");
+                    JSONObject main = (JSONObject) listObj.get("main");
+
                     long timestamp = Long.parseLong(listObj.get("dt").toString());
                     Date date = new Date(timestamp * 1000); //in ms
 
                     Map<String, String> resultString = new HashMap<>();
                     resultString.put("date", date.toString());
+                    resultString.put("aqi", main.get("aqi").toString());
                     resultString.put("no2", component.get("no2").toString());
-                    resultString.put("pm2_5", component.get("pm2_5").toString());
                     resultString.put("pm10", component.get("pm10").toString());
+                    resultString.put("o3", component.get("o3").toString());
+                    resultString.put("pm2_5", component.get("pm2_5").toString());
                     LOGGER.log(Level.INFO, "resultString: {0}", resultString);
 
                     resultJson = new JSONObject(resultString);

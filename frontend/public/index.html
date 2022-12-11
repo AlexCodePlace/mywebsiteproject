@@ -28,17 +28,17 @@
     <title>Climate App</title>
 </head>
 <body>
-<header>
-    Air Pollution Application
-</header>
-<div class="text">
-    <p>
-       Enter a City, State/Region and Country. <b>Example:</b> Waterville, NH, US.
-    </p>
-</div>
-<div class="page-container">
-    <div id="content-wrap">
+<div class="wrap">
+    <div class="header">
+        Air Pollution Application
+    </div>
+    <div class="main">
         <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div class="text">
+            <p>
+                Enter a City, State/Region and Country. <b>Example:</b> Waterville, NH, US.
+            </p>
+        </div>
         <div id="root"></div>
         <!--
           This HTML file is a template.
@@ -57,7 +57,13 @@
 
         <div class="text">
             <p>
-                Air pollution data is provided by <a href="https://openweathermap.org">OpenWeather</a> APIs.  <br>
+                Air pollution data is provided by <a href="https://openweathermap.org">OpenWeather</a> APIs.<br>
+                Air Quality Index can be one of the following values: 1 = Good, 2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.<br>
+<!--                <v style="background:#b4eaa8;">1 = Good</v>,-->
+<!--                <v style="background:#9fd779;">2 = Fair</v>,-->
+<!--                <v style="background:#ead37f;">3 = Moderate</v>,-->
+<!--                <v style="background:#e3af66;">4 = Poor</v>,-->
+<!--                <v style="background:#ee7777;">5 = Very Poor</v><br>-->
                 Besides basic Air Quality Index, you can see data about polluting gases: <br>
                 Nitrogen dioxide (NO2), Ozone (O3) and particulates (PM2.5 and PM10).
             </p>
@@ -127,14 +133,15 @@
             </tr>
             </tbody>
         </table>
+        </div>
     </div>
-    <footer>
-        <p>This webpage uses material from the Wikipedia article
-            <a href="https://en.wikipedia.org/wiki/Air_quality_index">"Air quality index"</a>
-            , which is released under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">
-                Creative Commons Attribution-Share-Alike License 3.0</a>.
-        </p>
-    </footer>
+</div>
+<div class="footer">
+    <p>This webpage uses material from the Wikipedia article
+        <a href="https://en.wikipedia.org/wiki/Air_quality_index">"Air quality index"</a>
+        , which is released under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">
+            Creative Commons Attribution-Share-Alike License 3.0</a>.
+    </p>
 </div>
 <!-- Load React. -->
 <!-- Note: when deploying, replace "development.js" with "production.min.js". -->

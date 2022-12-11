@@ -1,5 +1,6 @@
 package com.mywebsiteproject.service;
 
+import com.mywebsiteproject.model.CityParameters;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -23,12 +24,14 @@ public class PollutionService {
     private String apiToken;
 
     public JSONObject getCurrentPollutionDataByCityStateCountry(String cityName, String stateCode, String countryCode) {
-        Map<String, String> cityCoordinates = getCityLatitudeAndLongitude(cityName, stateCode, countryCode);
-        return getCurrentPollutionDataByLatAndLon(cityCoordinates.get("lat"), cityCoordinates.get("lon"));
+        CityParameters cityParameters = getCityLatitudeAndLongitude(cityName, stateCode, countryCode);
+        return getCurrentPollutionDataByLatAndLon(cityParameters);
     }
 
-    public JSONObject getCurrentPollutionDataByLatAndLon(String latitude, String longitude) {
+    public JSONObject getCurrentPollutionDataByLatAndLon(CityParameters cityParameters) {
         JSONObject resultJson = null;
+        double latitude = cityParameters.getLatitude();
+        double longitude = cityParameters.getLongitude();
         try {
             String urlInitial = "https://api.openweathermap.org/data/2.5/air_pollution?lat=" +
                     latitude +
@@ -84,6 +87,9 @@ public class PollutionService {
                     resultString.put("pm10", component.get("pm10").toString());
                     resultString.put("o3", component.get("o3").toString());
                     resultString.put("pm2_5", component.get("pm2_5").toString());
+                    resultString.put("resultCity", cityParameters.getCity());
+                    resultString.put("resultState", cityParameters.getState());
+                    resultString.put("resultCountry", cityParameters.getCountry());
                     LOGGER.log(Level.INFO, "resultString: {0}", resultString);
 
                     resultJson = new JSONObject(resultString);
@@ -95,9 +101,9 @@ public class PollutionService {
         return resultJson;
     }
 
-    public Map<String, String> getCityLatitudeAndLongitude(String cityName, String stateCode, String countryCode) {
+    public CityParameters getCityLatitudeAndLongitude(String cityName, String stateCode, String countryCode) {
         String resultLimit = "1";
-        HashMap<String, String> coordinates = null;
+        CityParameters cityParameters = new CityParameters();
         try {
             StringBuilder urlInitial = new StringBuilder();
             urlInitial.append("https://api.openweathermap.org/geo/1.0/direct?q=");
@@ -142,20 +148,18 @@ public class PollutionService {
                 JSONArray dataObjArray = (JSONArray) parser.parse(String.valueOf(inLine));
 
                 JSONObject dataObj = (JSONObject) dataObjArray.get(0); // 0 as we have resultLimit = 1
-
                 LOGGER.log(Level.INFO, "dataObj to parse {0}", dataObj);
-                Double latObj = (Double) dataObj.get("lat");
-                Double lonObj = (Double) dataObj.get("lon");
 
-                coordinates = new HashMap<>();
-                coordinates.put("lat", latObj.toString());
-                coordinates.put("lon", lonObj.toString());
-                LOGGER.log(Level.INFO, "city coordinates: {0}", coordinates);
-
+                cityParameters.setCity((String) dataObj.get("name"));
+                cityParameters.setState((String) dataObj.get("state"));
+                cityParameters.setCountry((String) dataObj.get("country"));
+                cityParameters.setLatitude((Double) dataObj.get("lat"));
+                cityParameters.setLongitude((Double) dataObj.get("lon"));
+                LOGGER.log(Level.INFO, "city parameters: {0}", cityParameters.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return coordinates;
+        return cityParameters;
     }
 }
